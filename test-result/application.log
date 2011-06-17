@@ -1,0 +1,6 @@
+17 juin 2011 09:33:42,635 INFO  ~ Starting /Users/aminasaoutal/Documents/cours4e?meSemestreCycleIng-MPL-/IF05/projet Dolomite/play-1.1.1/Dolomite
+17 juin 2011 09:33:42,642 INFO  ~ Module secure is available (/Users/aminasaoutal/Documents/cours4èmeSemestreCycleIng-MPL-/IF05/projet Dolomite/play-1.1.1/modules/secure)
+17 juin 2011 09:33:43,690 WARN  ~ You're running Play! in DEV mode
+17 juin 2011 09:33:43,831 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+17 juin 2011 09:33:51,142 INFO  ~ Connected to jdbc:hsqldb:mem:playembed
+17 juin 2011 09:33:51,991 INFO  ~ Application 'Dolomite' is now started !
