@@ -33,7 +33,7 @@ public class Group {
 	public void sendMsgGroup(String from, String message, String subject, String groupName){
 		Ldap adminConnection = new Ldap();
 		adminConnection.SetEnv(Play.configuration.getProperty("ldap.host"),Play.configuration.getProperty("ldap.admin.dn"), Play.configuration.getProperty("ldap.admin.password"));
-
+		
 		ArrayList<String> members = new ArrayList<String>();
 		members = LdapGroup.retrieve(groupName).getMembers();
 		System.out.println("!!!!!!!avant boucle");
@@ -54,6 +54,7 @@ public class Group {
 			Mails.sendMsg (from, to, message, subject);
 	    }
 		System.out.println("!!!!!!!!apres boucle");
+		//sssssssssssssssssss
 
 	}
 
