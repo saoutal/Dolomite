@@ -54,7 +54,7 @@ public class Group {
 			Mails.sendMsg (from, to, message, subject);
 	    }
 		System.out.println("!!!!!!!!apres boucle");
-		//sssssssssssssssssss
+		//test
 
 	}
 

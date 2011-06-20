@@ -109,4 +109,13 @@ public class LdapGroup {
 		adminConnection.SetEnv(Play.configuration.getProperty("ldap.host"),Play.configuration.getProperty("ldap.admin.dn"), Play.configuration.getProperty("ldap.admin.password"));
 		adminConnection.deleteGroup(adminConnection.getLdapEnv(), "cn="+groupName+","+Play.configuration.getProperty("ldap.dn"));
 	}
+	
+	
+	public ArrayList<String> getMembers() {
+        return this.members;
+	}
+	
+	public String getGroupName() {
+        return this.groupName;
+	}
 }

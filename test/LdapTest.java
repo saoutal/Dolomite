@@ -10,19 +10,34 @@ public class LdapTest extends UnitTest {
     //to do before EACH test
     public void setUp() {
         new LdapUser("flora.dupont@utt.fr", "test", "Flora", "Dupont", "flora.dupont").addUser();
-
+        new LdapUser("flura.dupont@utt.fr", "test", "Flura", "Dupont", "flura.dupont").addUser();
+        new LdapUser("flara.dupont@utt.fr", "test", "Flara", "Dupont", "flara.dupont").addUser();
+		
         LdapUser flo = LdapUser.connect("flora.dupont", "test");
+        LdapUser flu = LdapUser.connect("flura.dupont", "test");
+        LdapUser fla = LdapUser.connect("flara.dupont", "test");
         ArrayList<String> myMembers = new ArrayList();
         myMembers.add(flo.getLogin());
+        myMembers.add(flu.getLogin());
+        myMembers.add(fla.getLogin());
+		System.out.println("!!!!!!!!!!!SIZE " + myMembers.size());
         LdapGroup.createGroup("myFirstGroup", myMembers, flo);
     }
-
+	
     @Test
-    public void createUser() {
-        int result = new LdapUser("firstname.lastname@utt.fr", "password", "Firstname", "Lastname", "firstname.lastname").addUser();
-        assertEquals(0, result);
+    public void mailList() {
+        Group gp = new Group();
+        new LdapUser("flora.dupont@utt.fr", "test", "Flora", "Dupont", "flora.dupont").addUser();
+        LdapUser flo = LdapUser.connect("flora.dupont", "test");
+        LdapGroup ldapGp = LdapGroup.retrieve("myFirstGroup");
+		System.out.println("!!!!!!!!!!!!!!GROUPE NAME "+ldapGp.getGroupName() + " " + flo.getEmail());
+		String email = flo.getEmail();
+		String gpName = ldapGp.getGroupName();
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        gp.sendMsgGroup(email, " bonjour, ceci est un test", "testing message", ldapGp.getGroupName());
+		System.out.println("!!!!!!!!!!!!!!FIN ENVOI!!!!!!!!!!!!!!!!");
     }
-
+	
     @Test
     public void connect_OK() {
         LdapUser flo = LdapUser.connect("flora.dupont", "test");
@@ -161,7 +176,21 @@ public class LdapTest extends UnitTest {
             flo = LdapUser.connect("flora.dupont", "new_password");
         }
         flo.deleteUser();
-
+		
+		//delete Flura from Ldap
+        LdapUser flu = LdapUser.connect("flura.dupont", "test");
+        if (flu == null) {
+            flu = LdapUser.connect("flura.dupont", "new_password");
+        }
+        flu.deleteUser();
+		
+		//delete Flara from Ldap
+        LdapUser fla = LdapUser.connect("flara.dupont", "test");
+        if (fla == null) {
+            fla = LdapUser.connect("flara.dupont", "new_password");
+        }
+        fla.deleteUser();
+		
         //delete the user created during the test if any
         LdapUser user = LdapUser.connect("firstname.lastname", "password");
         if (user != null) {

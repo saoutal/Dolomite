@@ -11,18 +11,21 @@ public class Mails extends Mailer {
 		addRecipient(to);
 		setFrom(from);
 		setReplyTo(mailGodfather);
-                firstname=firstname.substring(0, 1).toUpperCase() + firstname.substring(1).toLowerCase();
-                lastname=lastname.substring(0, 1).toUpperCase() + lastname.substring(1).toLowerCase();
-                send(firstname, lastname, url, community, firstNameGodfather, lastNameGodfather);
+		send(firstname, lastname, url, community, firstNameGodfather, lastNameGodfather);
 	}
-
+	
 	public static void inviteEn (String from, String to, String firstname, String lastname, String url, String community, String firstNameGodfather, String lastNameGodfather, Object mailGodfather) {
 		setSubject("Invitation to " + community);
 		addRecipient(to);
 		setFrom(from);
 		setReplyTo(mailGodfather);
-		firstname=firstname.substring(0, 1).toUpperCase() + firstname.substring(1).toLowerCase();
-                lastname=lastname.substring(0, 1).toUpperCase() + lastname.substring(1).toLowerCase();
-                send(firstname, lastname, url, community, firstNameGodfather, lastNameGodfather);
+		send(firstname, lastname, url, community, firstNameGodfather, lastNameGodfather);
+	}
+	
+	public static void sendMsg(String from, String to, String msg, String subject) {
+        setSubject(subject);
+        addRecipient(to);
+        setFrom(from);
+        send(msg);
 	}
 }
